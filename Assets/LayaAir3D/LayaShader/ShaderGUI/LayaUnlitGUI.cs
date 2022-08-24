@@ -83,7 +83,14 @@ class LayaUnlitGUI : ShaderGUI
             mode = (RenderMode)EditorGUILayout.Popup((int)mode, Styles.renderModeNames);
             GUILayout.EndHorizontal();
             //enableVertexColor
-            m_MaterialEditor.ShaderProperty(isVertexColor, Styles.enableVertexColor);
+            bool boolvalue=isVertexColor.floatValue==1f;
+            boolvalue = EditorGUILayout.Toggle("Enable VertexColor",boolvalue);
+            if(boolvalue){
+                isVertexColor.floatValue=1f;
+            }else{
+                isVertexColor.floatValue=0f;
+            }
+           // m_MaterialEditor.ShaderProperty(isVertexColor, Styles.enableVertexColor);
             //albedo
             m_MaterialEditor.TexturePropertySingleLine(Styles.albedoText, albedoTexture, albedoColor);
             //albedo Intensity 
@@ -128,13 +135,17 @@ class LayaUnlitGUI : ShaderGUI
             }
 
 
-           
-            onChangeRender(material, (RenderMode)material.GetFloat("_Mode"));
 
-                //cullMode
-                cullMode.floatValue = (float)cull;
-                material.SetInt("_Cull", (int)cull);
+            onChangeRender(material, (RenderMode)material.GetFloat("_Mode"));
+            //cullMode
+            cullMode.floatValue = (float)cull;
+             material.SetFloat("_Cull", (int)cull);
+            if (material.HasFloat("_BUILTIN_CullMode"))
+            {
+                material.SetFloat("_BUILTIN_CullMode", (int)cull);
             }
+
+        }
         
         m_MaterialEditor.RenderQueueField();
     }
@@ -149,8 +160,24 @@ class LayaUnlitGUI : ShaderGUI
                 material.SetInt("_AlphaBlend", 0);
                 material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.One);
                 material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.Zero);
-                material.SetInt("_ZWrite", 1);
                 material.SetInt("_ZTest", 4);
+                material.SetInt("_ZWrite", 1);
+                if (material.HasFloat("_BUILTIN_SrcBlend"))
+                {
+                    material.SetFloat("_BUILTIN_SrcBlend", (float)UnityEngine.Rendering.BlendMode.One);
+                }
+                if (material.HasFloat("_BUILTIN_DstBlend"))
+                {
+                    material.SetFloat("_BUILTIN_DstBlend", (float)UnityEngine.Rendering.BlendMode.Zero);
+                }
+                if (material.HasFloat("_BUILTIN_ZWrite"))
+                {
+                    material.SetFloat("_BUILTIN_ZWrite", 1f);
+                }
+                if (material.HasFloat("_BUILTIN__ZTest"))
+                {
+                    material.SetFloat("_BUILTIN__ZTest", 4f);
+                }
                 material.DisableKeyword("_ALPHATEST_ON");
                 material.DisableKeyword("_ALPHABLEND_ON");
                 material.DisableKeyword("ADDTIVEFOG");
@@ -165,6 +192,22 @@ class LayaUnlitGUI : ShaderGUI
                 material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.Zero);
                 material.SetInt("_ZWrite", 1);
                 material.SetInt("_ZTest", 4);
+                if (material.HasFloat("_BUILTIN_SrcBlend"))
+                {
+                    material.SetFloat("_BUILTIN_SrcBlend", (float)UnityEngine.Rendering.BlendMode.One);
+                }
+                if (material.HasFloat("_BUILTIN_DstBlend"))
+                {
+                    material.SetFloat("_BUILTIN_DstBlend", (float)UnityEngine.Rendering.BlendMode.Zero);
+                }
+                if (material.HasFloat("_BUILTIN_ZWrite"))
+                {
+                    material.SetFloat("_BUILTIN_ZWrite", 1f);
+                }
+                if (material.HasFloat("_BUILTIN__ZTest"))
+                {
+                    material.SetFloat("_BUILTIN__ZTest", 4f);
+                }
                 material.EnableKeyword("_ALPHATEST_ON");
                 material.DisableKeyword("_ALPHABLEND_ON");
                 material.DisableKeyword("ADDTIVEFOG");
@@ -179,6 +222,22 @@ class LayaUnlitGUI : ShaderGUI
                 material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
                 material.SetInt("_ZWrite", 0);
                 material.SetInt("_ZTest", 4);
+                  if (material.HasFloat("_BUILTIN_SrcBlend"))
+                {
+                    material.SetFloat("_BUILTIN_SrcBlend", (float)UnityEngine.Rendering.BlendMode.SrcAlpha);
+                }
+                if (material.HasFloat("_BUILTIN_DstBlend"))
+                {
+                    material.SetFloat("_BUILTIN_DstBlend", (float)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+                }
+                if (material.HasFloat("_BUILTIN_ZWrite"))
+                {
+                    material.SetFloat("_BUILTIN_ZWrite", 0f);
+                }
+                if (material.HasFloat("_BUILTIN__ZTest"))
+                {
+                    material.SetFloat("_BUILTIN__ZTest", 4f);
+                }
                 material.DisableKeyword("_ALPHATEST_ON");
                 material.EnableKeyword("_ALPHABLEND_ON");
                 material.DisableKeyword("ADDTIVEFOG");
@@ -193,6 +252,22 @@ class LayaUnlitGUI : ShaderGUI
                 material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.Zero);
                 material.SetInt("_ZWrite", 1);
                 material.SetInt("_ZTest", 4);
+                  if (material.HasFloat("_BUILTIN_SrcBlend"))
+                {
+                    material.SetFloat("_BUILTIN_SrcBlend", (float)UnityEngine.Rendering.BlendMode.One);
+                }
+                if (material.HasFloat("_BUILTIN_DstBlend"))
+                {
+                    material.SetFloat("_BUILTIN_DstBlend", (float)UnityEngine.Rendering.BlendMode.Zero);
+                }
+                if (material.HasFloat("_BUILTIN_ZWrite"))
+                {
+                    material.SetFloat("_BUILTIN_ZWrite", 1f);
+                }
+                if (material.HasFloat("_BUILTIN__ZTest"))
+                {
+                    material.SetFloat("_BUILTIN__ZTest", 4f);
+                }
                 material.DisableKeyword("_ALPHATEST_ON");
                 material.DisableKeyword("_ALPHABLEND_ON");
                 material.DisableKeyword("ADDTIVEFOG");
