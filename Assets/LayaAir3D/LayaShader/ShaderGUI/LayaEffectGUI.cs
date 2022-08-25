@@ -96,6 +96,22 @@ class LayaEffectGUI : ShaderGUI
                 material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.One);
                 material.SetInt("_ZWrite", 0);
                 material.SetInt("_ZTest", 4);
+                if (material.HasFloat("_BUILTIN_SrcBlend"))
+                {
+                    material.SetFloat("_BUILTIN_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+                }
+                if (material.HasFloat("_BUILTIN_DstBlend"))
+                {
+                    material.SetFloat("_BUILTIN_DstBlend", (int)UnityEngine.Rendering.BlendMode.One);
+                }
+                if (material.HasFloat("_BUILTIN_ZWrite"))
+                {
+                    material.SetFloat("_BUILTIN_ZWrite", 0);
+                }
+                if (material.HasFloat("_BUILTIN_ZTest"))
+                {
+                    material.SetFloat("_BUILTIN_ZTest", 4);
+                }
                 material.DisableKeyword("_ALPHATEST_ON");
                 material.EnableKeyword("_ALPHABLEND_ON");
                 material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Transparent;
@@ -109,6 +125,22 @@ class LayaEffectGUI : ShaderGUI
                 material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
                 material.SetInt("_ZWrite", 0);
                 material.SetInt("_ZTest", 4);
+                 if (material.HasFloat("_BUILTIN_SrcBlend"))
+                {
+                    material.SetFloat("_BUILTIN_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+                }
+                if (material.HasFloat("_BUILTIN_DstBlend"))
+                {
+                    material.SetFloat("_BUILTIN_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+                }
+                if (material.HasFloat("_BUILTIN_ZWrite"))
+                {
+                    material.SetFloat("_BUILTIN_ZWrite", 0);
+                }
+                if (material.HasFloat("_BUILTIN_ZTest"))
+                {
+                    material.SetFloat("_BUILTIN_ZTest", 4);
+                }
                 material.DisableKeyword("_ALPHATEST_ON");
                 material.EnableKeyword("_ALPHABLEND_ON");
                 material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Transparent;
@@ -122,6 +154,22 @@ class LayaEffectGUI : ShaderGUI
                 material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
                 material.SetInt("_ZWrite", 0);
                 material.SetInt("_ZTest", 4);
+                        if (material.HasFloat("_BUILTIN_SrcBlend"))
+                {
+                    material.SetFloat("_BUILTIN_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+                }
+                if (material.HasFloat("_BUILTIN_DstBlend"))
+                {
+                    material.SetFloat("_BUILTIN_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+                }
+                if (material.HasFloat("_BUILTIN_ZWrite"))
+                {
+                    material.SetFloat("_BUILTIN_ZWrite", 0);
+                }
+                if (material.HasFloat("_BUILTIN_ZTest"))
+                {
+                    material.SetFloat("_BUILTIN_ZTest", 4);
+                }
                 material.DisableKeyword("_ALPHATEST_ON");
                 material.EnableKeyword("_ALPHABLEND_ON");
                 material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Transparent;
